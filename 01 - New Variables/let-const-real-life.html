@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>let and const real world</title>
-</head>
-<body>
-<script>
-  {
-    const name = 'wes';
-    console.log(name);
-  }
+  <head>
+    <meta charset="UTF-8" />
+    <title>let and const real world</title>
+  </head>
+  <body>
+    <script>
+      //iife
+      (function () {
+        var name = "cre";
+        console.log(name);
+      })();
 
-  for(let i = 0; i < 10; i++) {
-    console.log(i);
-    setTimeout(function() {
-      console.log('The number is ' + i);
-    },1000);
-  }
+      //we can just use let and const instead of having to do the iife
+      {
+        const name = "wes";
+        console.log(name);
+      }
 
-</script>
-</body>
+      //using let i instead of var i will scope the var value to the block
+      for (let i = 0; i < 10; i++) {
+        console.log(i);
+        //if we use var, setTimeout runs after a second and by then the i is already equal tto 10
+        //if we use let the i var is gonna be scoped to the block
+        setTimeout(function () {
+          console.log("The number is " + i);
+        }, 1000);
+      }
+    </script>
+  </body>
 </html>
