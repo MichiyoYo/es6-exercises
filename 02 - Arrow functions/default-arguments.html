@@ -12,6 +12,8 @@
         return total + total * tax + total * tip;
       }
 
+      //if we want to specify some values and keep the default value of some others
+      // we can use undefined so the function will grab the default value for that parameter
       const totalBill = calculateBill(100, undefined, 0.25);
       console.log(totalBill);
     </script>
