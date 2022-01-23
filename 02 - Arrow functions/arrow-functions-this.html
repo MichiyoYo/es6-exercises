@@ -70,9 +70,27 @@
 
       //if we use an arrow function for the callback, the keywork this
       //doesn't bind automatically to the box element, but it stays boud with the window
-
       const box2 = document.querySelector(".box");
       box.addEventListener("click", () => console.log(this));
+
+      box.addEventListener("click", function () {
+        this.classlist.toggle("opening"); //this refers to the box beacuse we are using a regular callback function
+        setTimeout(function () {
+          console.log(this); // this refers to window because we entered a new block and the function is not bound to anything
+          this.classList.toggle("open");
+        }, 1000);
+      });
+
+      //to fix this we can just turn the setTimeout callback into an arrow function
+      //because the arrow function inherits the meaning of this from its parent
+
+      box.addEventListener("click", function () {
+        this.classList.toggle("opening");
+        setTimeout(() => {
+          console.log(this); //this inherits the value from the parent this.classList
+          this.classList.toggle("open");
+        }, 1000);
+      });
     </script>
   </body>
 </html>
